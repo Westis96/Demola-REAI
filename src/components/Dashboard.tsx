@@ -13,27 +13,27 @@ const Dashboard = () => {
     <div className="space-y-6">
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {stats.map(({ label, value, icon: Icon, trend }) => (
-          <div key={label} className="bg-white p-6 rounded-xl shadow-sm">
+          <div key={label} className="bg-card p-6 rounded-xl shadow-sm">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">{label}</p>
-                <p className="mt-2 text-3xl font-semibold text-gray-900">{value}</p>
+                <p className="text-sm font-medium text-muted-foreground">{label}</p>
+                <p className="mt-2 text-3xl font-semibold ">{value}</p>
               </div>
-              <Icon className="h-12 w-12 text-indigo-600 opacity-20" />
+              <Icon className="h-12 w-12 text-primary opacity-90" />
             </div>
-            <p className="mt-2 text-sm text-gray-600">{trend}</p>
+            <p className="mt-2 text-sm text-muted-foreground">{trend}</p>
           </div>
         ))}
       </div>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-        <div className="bg-white p-6 rounded-xl shadow-sm">
-          <h2 className="text-lg font-semibold text-gray-900">Recent Analysis</h2>
+        <div className="bg-card p-6 rounded-xl shadow-sm">
+          <h2 className="text-lg font-semibold ">Recent Analysis</h2>
           <div className="mt-4 space-y-4">
             {['Match vs. City', 'Training Session', 'Player Development'].map((item) => (
-              <div key={item} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                <span className="text-sm font-medium text-gray-900">{item}</span>
-                <Button className="bg-transparent shadow-none text-sm text-indigo-600 hover:text-indigo-700 hover:bg-foreground/5">
+              <div key={item} className="flex items-center justify-between p-4 bg-foreground/10 rounded-lg">
+                <span className="text-sm font-medium ">{item}</span>
+                <Button className="bg-transparent shadow-none text-sm text-primary hover:bg-foreground/5">
                   View Details
                 </Button>
               </div>
@@ -41,16 +41,18 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-xl shadow-sm">
-          <h2 className="text-lg font-semibold text-gray-900">Team Performance</h2>
+        <div className="bg-card p-6 rounded-xl shadow-sm">
+          <h2 className="text-lg font-semibold ">Team Performance</h2>
           <div className="mt-4 space-y-4">
             {['Possession: 65%', 'Pass Accuracy: 88%', 'Shot Accuracy: 45%'].map((stat) => (
-              <div key={stat} className="flex items-center justify-between">
-                <span className="text-sm text-gray-600">{stat.split(':')[0]}</span>
+              <div key={stat} className="flex items-center justify-center">
+                <span className="text-sm text-muted-foreground">{stat.split(':')[0]}</span>
+                <div className="grow" />
                 <div className="w-2/3">
-                  <div className="h-2 bg-gray-200 rounded-full">
+                  <span className="text-sm text-muted-foreground text-right w-full">{stat.split(':')[1]}</span>
+                  <div className="h-2 bg-foreground/20 rounded-full">
                     <div
-                      className="h-2 bg-indigo-600 rounded-full"
+                      className="h-2 bg-primary rounded-full"
                       style={{ width: stat.split(':')[1].trim() }}
                     ></div>
                   </div>

@@ -179,7 +179,7 @@ export default function Page() {
             <SidebarMenu>
               {data.team.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
+                  <SidebarMenuButton asChild className={pathname === item.path ? "bg-sidebar-accent text-sidebar-accent-foreground" : ""}>
                     <a href={item.path}>
                       <item.icon />
                       <span>{item.title}</span>
@@ -199,16 +199,16 @@ export default function Page() {
                     >
                       <DropdownMenuItem>
                         <Folder className="text-muted-foreground" />
-                        <span>View Project</span>
+                        <span>View Team</span>
                       </DropdownMenuItem>
                       <DropdownMenuItem>
                         <Share className="text-muted-foreground" />
-                        <span>Share Project</span>
+                        <span>Share Team</span>
                       </DropdownMenuItem>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem>
                         <Trash2 className="text-muted-foreground" />
-                        <span>Delete Project</span>
+                        <span>Delete Team</span>
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>

@@ -24,12 +24,12 @@ const PlayerMetrics = () => {
       {/* Performance Overview */}
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {performanceMetrics.map(({ icon: Icon, label, value }) => (
-          <div key={label} className="bg-white p-6 rounded-xl shadow-sm">
+          <div key={label} className="bg-card p-6 rounded-xl shadow-sm">
             <div className="flex items-center space-x-3">
-              <Icon className="h-8 w-8 text-indigo-600" />
+              <Icon className="h-8 w-8 text-primary" />
               <div>
-                <p className="text-sm font-medium text-gray-600">{label}</p>
-                <p className="text-2xl font-semibold text-gray-900">{value}</p>
+                <p className="text-sm font-medium text-muted-foreground">{label}</p>
+                <p className="text-2xl font-semibold ">{value}</p>
               </div>
             </div>
           </div>
@@ -37,57 +37,57 @@ const PlayerMetrics = () => {
       </div>
 
       {/* Player List */}
-      <div className="bg-white rounded-xl shadow-sm overflow-hidden">
+      <div className="bg-card rounded-xl shadow-sm overflow-hidden">
         <div className="p-6">
-          <h2 className="text-lg font-semibold text-gray-900">Player Performance</h2>
+          <h2 className="text-lg font-semibold ">Player Performance</h2>
         </div>
-        <div className="border-t border-gray-200">
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
+        <div className="border-t border-foreground/10">
+          <table className="min-w-full divide-y divide-foreground/10">
+            <thead className="bg-foreground/10">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                   Player
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                   Position
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                   Goals
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                   Assists
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                   Accuracy
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                   Fitness
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                   Form
                 </th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
+            <tbody className="bg-card divide-y divide-foreground/10">
               {players.map((player) => (
-                <tr key={player.id} className="hover:bg-gray-50">
+                <tr key={player.id} className="hover:bg-foreground/10">
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm font-medium text-gray-900">{player.name}</div>
+                    <div className="text-sm font-medium ">{player.name}</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-500">{player.position}</div>
+                    <div className="text-sm text-muted-foreground">{player.position}</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-900">{player.stats.goals}</div>
+                    <div className="text-sm ">{player.stats.goals}</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-900">{player.stats.assists}</div>
+                    <div className="text-sm ">{player.stats.assists}</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-900">{player.stats.accuracy}%</div>
+                    <div className="text-sm ">{player.stats.accuracy}%</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-900">{player.stats.fitness}%</div>
+                    <div className="text-sm ">{player.stats.fitness}%</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
@@ -107,8 +107,8 @@ const PlayerMetrics = () => {
 
       {/* Individual Metrics */}
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-        <div className="bg-white p-6 rounded-xl shadow-sm">
-          <h2 className="text-lg font-semibold text-gray-900">Training Load</h2>
+        <div className="bg-card p-6 rounded-xl shadow-sm">
+          <h2 className="text-lg font-semibold ">Training Load</h2>
           <div className="mt-4 space-y-4">
             {[
               { icon: Zap, label: 'High Intensity Minutes', value: '45 mins' },
@@ -116,19 +116,19 @@ const PlayerMetrics = () => {
               { icon: Heart, label: 'Avg Heart Rate', value: '145 bpm' },
               { icon: BarChart3, label: 'Performance Score', value: '8.5/10' }
             ].map(({ icon: Icon, label, value }) => (
-              <div key={label} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+              <div key={label} className="flex items-center justify-between p-3 bg-foreground/10 rounded-lg">
                 <div className="flex items-center space-x-3">
-                  <Icon className="h-5 w-5 text-indigo-600" />
-                  <span className="text-sm font-medium text-gray-900">{label}</span>
+                  <Icon className="h-5 w-5 text-primary" />
+                  <span className="text-sm font-medium ">{label}</span>
                 </div>
-                <span className="text-sm text-gray-600">{value}</span>
+                <span className="text-sm text-muted-foreground">{value}</span>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-xl shadow-sm">
-          <h2 className="text-lg font-semibold text-gray-900">Recent Achievements</h2>
+        <div className="bg-card p-6 rounded-xl shadow-sm">
+          <h2 className="text-lg font-semibold ">Recent Achievements</h2>
           <div className="mt-4 space-y-4">
             {[
               { title: 'Hat-trick vs United', date: '2 days ago' },
@@ -136,11 +136,11 @@ const PlayerMetrics = () => {
               { title: 'Player of the Month', date: '2 weeks ago' },
               { title: 'Clean Sheet Record', date: '3 weeks ago' }
             ].map((achievement) => (
-              <div key={achievement.title} className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+              <div key={achievement.title} className="flex items-center space-x-3 p-3 bg-foreground/10 rounded-lg">
                 <Award className="h-5 w-5 text-yellow-500" />
                 <div>
-                  <p className="text-sm font-medium text-gray-900">{achievement.title}</p>
-                  <p className="text-xs text-gray-500">{achievement.date}</p>
+                  <p className="text-sm font-medium ">{achievement.title}</p>
+                  <p className="text-xs text-muted-foreground">{achievement.date}</p>
                 </div>
               </div>
             ))}
