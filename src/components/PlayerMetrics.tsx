@@ -1,4 +1,3 @@
-import React from 'react';
 import { 
   Heart, 
   Timer, 
@@ -9,46 +8,9 @@ import {
   Footprints,
   BarChart3
 } from 'lucide-react';
+import { players } from '@/lib/data/PlayerData';
 
 const PlayerMetrics = () => {
-  const players = [
-    {
-      id: 1,
-      name: 'Marcus Johnson',
-      position: 'Forward',
-      stats: {
-        goals: 12,
-        assists: 8,
-        accuracy: 78,
-        fitness: 92,
-        form: 'Excellent'
-      }
-    },
-    {
-      id: 2,
-      name: 'David Chen',
-      position: 'Midfielder',
-      stats: {
-        goals: 5,
-        assists: 15,
-        accuracy: 85,
-        fitness: 88,
-        form: 'Good'
-      }
-    },
-    {
-      id: 3,
-      name: 'James Wilson',
-      position: 'Defender',
-      stats: {
-        goals: 2,
-        assists: 4,
-        accuracy: 90,
-        fitness: 95,
-        form: 'Excellent'
-      }
-    }
-  ];
 
   const performanceMetrics = [
     { icon: Target, label: 'Shot Accuracy', value: '78%' },

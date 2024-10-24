@@ -1,5 +1,5 @@
-import React from 'react';
 import { Users, Calendar, TrendingUp, Activity } from 'lucide-react';
+import { Button } from './ui/button';
 
 const Dashboard = () => {
   const stats = [
@@ -33,9 +33,9 @@ const Dashboard = () => {
             {['Match vs. City', 'Training Session', 'Player Development'].map((item) => (
               <div key={item} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
                 <span className="text-sm font-medium text-gray-900">{item}</span>
-                <button className="text-sm text-indigo-600 hover:text-indigo-700">
+                <Button className="bg-transparent shadow-none text-sm text-indigo-600 hover:text-indigo-700 hover:bg-foreground/5">
                   View Details
-                </button>
+                </Button>
               </div>
             ))}
           </div>
