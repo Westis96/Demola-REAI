@@ -6,6 +6,7 @@ import {
   BadgeCheck,
   BarChart2,
   Bell,
+  Calendar,
   ChevronsUpDown,
   CreditCard,
   Folder,
@@ -73,6 +74,7 @@ import TacticalBoard from './components/TacticalBoard';
 import TeamOverview from './components/TeamOverview';
 import PerformanceAnalytics from './components/PerformanceAnalytics';
 import MatchStrategy from './components/MatchStrategy';
+import CalendarPage from './components/CalendarPage';
 
 const data = {
   user: {
@@ -85,6 +87,7 @@ const data = {
       { title: 'Video Analysis', icon: Video, path: '/video' },
       { title: 'Player Metrics', icon: BarChart2, path: '/metrics' },
       { title: 'Tactical Board', icon: Users, path: '/tactics' },
+      { title: 'Calendar', icon: Calendar, path: '/calendar' },
   ],
   navSecondary: [
     {
@@ -369,6 +372,7 @@ export default function Page() {
                 <Route path="/team-overview" element={<TeamOverview />} />
                 <Route path="/performance-analytics" element={<PerformanceAnalytics />} />
                 <Route path="/match-strategy" element={<MatchStrategy />} />
+                <Route path="/calendar" element={<CalendarPage />} />
               </Routes>
             </motion.div>
           </AnimatePresence>
