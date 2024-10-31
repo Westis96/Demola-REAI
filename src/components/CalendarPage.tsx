@@ -76,8 +76,31 @@ export default function CalendarPage() {
           </header>
           <div className="flex flex-1 flex-col gap-4 p-4 w-full h-full">
             <div className="grid auto-rows-min gap-4 md:grid-cols-5">
-              {Array.from({ length: 20 }).map((_, i) => (
-                <div key={i} className="aspect-square rounded-xl bg-muted/50" />
+              {[
+                { type: 'match', title: 'vs. Team A', time: '15:00' },
+                { type: 'rest'},
+                { type: 'training', title: 'Team Practice', time: '10:00' },
+                { type: 'match', title: 'vs. Team B', time: '19:45' },
+                { type: 'rest'},
+                { type: 'training', title: 'Fitness Session', time: '09:00' },
+                { type: 'match', title: 'vs. Team C', time: '16:30' },
+                { type: 'training', title: 'Tactical Drills', time: '11:00' },
+                { type: 'rest'},
+                { type: 'match', title: 'vs. Team D', time: '20:00' },
+                { type: 'training', title: 'Recovery Session', time: '10:30' },
+                { type: 'rest'},
+                { type: 'rest'},
+                { type: 'match', title: 'vs. Team E', time: '14:00' },
+                { type: 'rest'},
+                { type: 'training', title: 'Set Piece Practice', time: '13:00' },
+              ].map((event, i) => (
+                <div key={i} className="aspect-square rounded-xl bg-muted/50 p-2 flex flex-col justify-between">
+                  <div className={`text-xs font-semibold ${event.type === 'match' ? 'text-red-500' : 'text-blue-500'}`}>
+                    {event.type === 'match' ? 'Match' : event.type === 'training' ? 'Training' : ''}
+                  </div>
+                  <div className="text-sm font-medium">{event.title}</div>
+                  <div className="text-xs text-gray-500">{event.time}</div>
+                </div>
               ))}
             </div>
           </div>
