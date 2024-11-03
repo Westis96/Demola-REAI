@@ -302,9 +302,9 @@ const VideoAnalysis = () => {
           </Button>
         </div>
         <div ref={eventListRef} className="space-y-2">
-          {events.sort((a, b) => (a.start-b.start)).map(({ time, event }) => (
+          {events.sort((a, b) => (a.start-b.start)).map(({ time, event, id }) => (
             <div
-              key={time}
+              key={id}
               data-time={time}
               onClick={() => seekToTime(time)}
               className={cn(

@@ -1,35 +1,7 @@
 "use client"
 
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, useLocation, Outlet } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import {
-  BadgeCheck,
-  BarChart2,
-  Bell,
-  Calendar,
-  ChevronsUpDown,
-  CreditCard,
-  Folder,
-  Frame,
-  Layout,
-  LifeBuoy,
-  LogOut,
-  Map,
-  MoreHorizontal,
-  PieChart,
-  Send,
-  Share,
-  Sparkles,
-  Trash2,
-  Users,
-  Video,
-} from "lucide-react"
-
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/components/ui/avatar"
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -38,34 +10,11 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
-import {
-  Collapsible,
-} from "@/components/ui/collapsible"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
 import { Separator } from "@/components/ui/separator"
 import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarGroupLabel,
-  SidebarHeader,
   SidebarInset,
-  SidebarMenu,
-  SidebarMenuAction,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  SidebarProvider,
   SidebarTrigger,
+  SidebarProvider,
 } from "@/components/ui/sidebar"
 import Dashboard from './components/Dashboard';
 import VideoAnalysis from './components/VideoAnalysis';
@@ -75,52 +24,13 @@ import TeamOverview from './components/TeamOverview';
 import PerformanceAnalytics from './components/PerformanceAnalytics';
 import MatchStrategy from './components/MatchStrategy';
 import CalendarPage from './components/CalendarPage';
+import { PlayerProfile } from './components/player/PlayerProfile'
+import { AICoach } from './components/player/AICoach'
+import { GameSimulation } from './components/player/GameSimulation';
+import { PlayerClips } from './components/player/PlayerClips';
+import { AppSidebar } from '@/components/layout/Sidebar'
 
-const data = {
-  user: {
-    name: "Pablo Jorquera",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
-  navMain: [
-      { title: 'Dashboard', icon: Layout, path: '/', isActive: true },
-      { title: 'Video Analysis', icon: Video, path: '/video' },
-      { title: 'Player Metrics', icon: BarChart2, path: '/metrics' },
-      { title: 'Tactical Board', icon: Users, path: '/tactics' },
-      { title: 'Calendar', icon: Calendar, path: '/calendar' },
-  ],
-  navSecondary: [
-    {
-      title: "Support",
-      path: "#",
-      icon: LifeBuoy,
-    },
-    {
-      title: "Feedback",
-      path: "#",
-      icon: Send,
-    },
-  ],
-  team: [
-    {
-      title: "Team Overview",
-      path: "/team-overview",
-      icon: Frame,
-    },
-    {
-      title: "Performance Analytics",
-      path: "/performance-analytics",
-      icon: PieChart,
-    },
-    {
-      title: "Match Strategy",
-      path: "/match-strategy",
-      icon: Map,
-    },
-  ],
-}
-
-export default function Page() {
+function Layout() {
   const { pathname } = useLocation();
 
   const pageVariants = {
@@ -137,198 +47,7 @@ export default function Page() {
 
   return (
     <SidebarProvider>
-      <Sidebar variant="inset">
-        <SidebarHeader>
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton size="lg" asChild>
-                <a href="#">
-                  <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-transparent text-sidebar-primary-foreground">
-                    <img src="/media/images/logo.svg" alt="REAI Logo" className="w-full h-full object-contain" />
-                  </div>
-                  <div className="grid flex-1 text-left text-sm leading-tight">
-                    <span className="truncate font-semibold">REAI</span>
-                    <span className="truncate text-xs">Sports Analytics</span>
-                  </div>
-                </a>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          </SidebarMenu>
-        </SidebarHeader>
-        <SidebarContent>
-          <SidebarGroup>
-            <SidebarGroupLabel>Platform</SidebarGroupLabel>
-            <SidebarMenu>
-              {data.navMain.map((item) => (
-                <Collapsible
-                  key={item.title}
-                  asChild
-                  defaultOpen={item.isActive}
-                >
-                  <SidebarMenuItem>
-                    <SidebarMenuButton asChild tooltip={item.title} className={pathname === item.path ? "bg-sidebar-accent text-sidebar-accent-foreground" : ""}>
-                      <a href={item.path}>
-                        <item.icon />
-                        <span>{item.title}</span>
-                      </a>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                </Collapsible>
-              ))}
-            </SidebarMenu>
-          </SidebarGroup>
-          <SidebarGroup className="group-data-[collapsible=icon]:hidden">
-            <SidebarGroupLabel>Team</SidebarGroupLabel>
-            <SidebarMenu>
-              {data.team.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild className={pathname === item.path ? "bg-sidebar-accent text-sidebar-accent-foreground" : ""}>
-                    <a href={item.path}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </a>
-                  </SidebarMenuButton>
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <SidebarMenuAction showOnHover>
-                        <MoreHorizontal />
-                        <span className="sr-only">More</span>
-                      </SidebarMenuAction>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent
-                      className="w-48"
-                      side="bottom"
-                      align="end"
-                    >
-                      <DropdownMenuItem>
-                        <Folder className="text-muted-foreground" />
-                        <span>View Team</span>
-                      </DropdownMenuItem>
-                      <DropdownMenuItem>
-                        <Share className="text-muted-foreground" />
-                        <span>Share Team</span>
-                      </DropdownMenuItem>
-                      <DropdownMenuSeparator />
-                      <DropdownMenuItem>
-                        <Trash2 className="text-muted-foreground" />
-                        <span>Delete Team</span>
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                </SidebarMenuItem>
-              ))}
-              <SidebarMenuItem>
-                <SidebarMenuButton>
-                  <MoreHorizontal />
-                  <span>More</span>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            </SidebarMenu>
-          </SidebarGroup>
-          <SidebarGroup className="mt-auto">
-            <SidebarGroupContent>
-              <SidebarMenu>
-                {data.navSecondary.map((item) => (
-                  <SidebarMenuItem key={item.title}>
-                    <SidebarMenuButton asChild size="sm">
-                      <a href={item.path}>
-                        <item.icon />
-                        <span>{item.title}</span>
-                      </a>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                ))}
-              </SidebarMenu>
-            </SidebarGroupContent>
-          </SidebarGroup>
-        </SidebarContent>
-        <SidebarFooter>
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <SidebarMenuButton
-                    size="lg"
-                    className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
-                  >
-                    <Avatar className="h-8 w-8 rounded-lg">
-                      <AvatarImage
-                        src={data.user.avatar}
-                        alt={data.user.name}
-                      />
-                      <AvatarFallback className="rounded-lg">PJ</AvatarFallback>
-                    </Avatar>
-                    <div className="grid flex-1 text-left text-sm leading-tight">
-                      <span className="truncate font-semibold">
-                        {data.user.name}
-                      </span>
-                      <span className="truncate text-xs">
-                        {data.user.email}
-                      </span>
-                    </div>
-                    <ChevronsUpDown className="ml-auto size-4" />
-                  </SidebarMenuButton>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent
-                  className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
-                  side="bottom"
-                  align="end"
-                  sideOffset={4}
-                >
-                  <DropdownMenuLabel className="p-0 font-normal">
-                    <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-                      <Avatar className="h-8 w-8 rounded-lg">
-                        <AvatarImage
-                          src={data.user.avatar}
-                          alt={data.user.name}
-                        />
-                        <AvatarFallback className="rounded-lg">
-                          PJ
-                        </AvatarFallback>
-                      </Avatar>
-                      <div className="grid flex-1 text-left text-sm leading-tight">
-                        <span className="truncate font-semibold">
-                          {data.user.name}
-                        </span>
-                        <span className="truncate text-xs">
-                          {data.user.email}
-                        </span>
-                      </div>
-                    </div>
-                  </DropdownMenuLabel>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuGroup>
-                    <DropdownMenuItem>
-                      <Sparkles />
-                      Upgrade to Pro
-                    </DropdownMenuItem>
-                  </DropdownMenuGroup>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuGroup>
-                    <DropdownMenuItem>
-                      <BadgeCheck />
-                      Account
-                    </DropdownMenuItem>
-                    <DropdownMenuItem>
-                      <CreditCard />
-                      Billing
-                    </DropdownMenuItem>
-                    <DropdownMenuItem>
-                      <Bell />
-                      Notifications
-                    </DropdownMenuItem>
-                  </DropdownMenuGroup>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem>
-                    <LogOut />
-                    Log out
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </SidebarMenuItem>
-          </SidebarMenu>
-        </SidebarFooter>
-      </Sidebar>
+      <AppSidebar />
       <SidebarInset>
         <motion.header
           initial={{ opacity: 0, y: -20 }}
@@ -342,13 +61,13 @@ export default function Page() {
             <Breadcrumb>
               <BreadcrumbList>
                 <BreadcrumbItem className="hidden md:block">
-                  <BreadcrumbLink href="#">
-                    Your Team
-                  </BreadcrumbLink>
+                  <BreadcrumbLink href="#">Your Team</BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator className="hidden md:block" />
                 <BreadcrumbItem>
-                  <BreadcrumbPage>{[...data.navMain, ...data.team].find(item => item.path === pathname)?.title}</BreadcrumbPage>
+                  <BreadcrumbPage>
+                    {pathname === '/' ? 'Dashboard' : pathname.slice(1).charAt(0).toUpperCase() + pathname.slice(2)}
+                  </BreadcrumbPage>
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
@@ -364,20 +83,72 @@ export default function Page() {
               variants={pageVariants}
               transition={pageTransition}
             >
-              <Routes>
-                <Route path="/" element={<Dashboard />} />
-                <Route path="/video" element={<VideoAnalysis />} />
-                <Route path="/metrics" element={<PlayerMetrics />} />
-                <Route path="/tactics" element={<TacticalBoard />} />
-                <Route path="/team-overview" element={<TeamOverview />} />
-                <Route path="/performance-analytics" element={<PerformanceAnalytics />} />
-                <Route path="/match-strategy" element={<MatchStrategy />} />
-                <Route path="/calendar" element={<CalendarPage />} />
-              </Routes>
+              <Outlet />
             </motion.div>
           </AnimatePresence>
         </div>
       </SidebarInset>
     </SidebarProvider>
-  )
+  );
+}
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
+      {
+        path: "/",
+        element: <Dashboard />,
+      },
+      {
+        path: "/player-profile",
+        element: <PlayerProfile />,
+      },
+      {
+        path: "/video",
+        element: <VideoAnalysis />,
+      },
+      {
+        path: "/metrics",
+        element: <PlayerMetrics />,
+      },
+      {
+        path: "/tactics",
+        element: <TacticalBoard />,
+      },
+      {
+        path: "/team-overview",
+        element: <TeamOverview />,
+      },
+      {
+        path: "/performance-analytics",
+        element: <PerformanceAnalytics />,
+      },
+      {
+        path: "/match-strategy",
+        element: <MatchStrategy />,
+      },
+      {
+        path: "/ai-coach",
+        element: <AICoach />,
+      },
+      {
+        path: "/game-sim",
+        element: <GameSimulation />,
+      },
+      {
+        path: "/clips",
+        element: <PlayerClips />,
+      },
+      {
+        path: "/calendar",
+        element: <CalendarPage />,
+      }
+    ]
+  }
+]);
+
+export default function App() {
+  return <RouterProvider router={router} />;
 }

@@ -1,4 +1,3 @@
-
 "use client"
 
 import * as React from "react"
@@ -12,7 +11,7 @@ import { useControllableState } from "@/hooks/use-controllable-state"
 import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { useToast } from "@/lib/hooks/useToast"
+import { useToast } from "@/hooks/use-toast"
 
 interface FileUploaderProps extends React.HTMLAttributes<HTMLDivElement> {
   /**

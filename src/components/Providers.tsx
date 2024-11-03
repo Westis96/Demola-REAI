@@ -1,13 +1,12 @@
-import { Provider } from 'jotai';
+import { Provider, createStore } from 'jotai';
 import type { ReactNode } from 'react';
-import { BrowserRouter } from 'react-router-dom';
+
+const myStore = createStore()
 
 export function Providers({ children }: { children: ReactNode }) {
   return (
-    <BrowserRouter>
-      <Provider>
-        {children}
-      </Provider>
-    </BrowserRouter>
+    <Provider store={myStore}>
+      {children}
+    </Provider>
   );
 }
