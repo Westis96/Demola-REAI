@@ -29,8 +29,9 @@ import { AICoach } from './components/player/AICoach'
 import { GameSimulation } from './components/player/GameSimulation';
 import { PlayerClips } from './components/player/PlayerClips';
 import { AppSidebar } from '@/components/layout/Sidebar'
+import { Landing } from '@/components/landing/index'
 
-function Layout() {
+function DashboardLayout() {
   const { pathname } = useLocation();
 
   const pageVariants = {
@@ -66,7 +67,7 @@ function Layout() {
                 <BreadcrumbSeparator className="hidden md:block" />
                 <BreadcrumbItem>
                   <BreadcrumbPage>
-                    {pathname === '/' ? 'Dashboard' : pathname.slice(1).charAt(0).toUpperCase() + pathname.slice(2)}
+                    {pathname === '/dashboard' ? 'Dashboard' : pathname.slice(1).charAt(0).toUpperCase() + pathname.slice(2)}
                   </BreadcrumbPage>
                 </BreadcrumbItem>
               </BreadcrumbList>
@@ -95,56 +96,60 @@ function Layout() {
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout />,
+    element: <Landing />,
+  },
+  {
+    path: "/dashboard",
+    element: <DashboardLayout />,
     children: [
       {
-        path: "/",
+        path: "/dashboard",
         element: <Dashboard />,
       },
       {
-        path: "/player-profile",
+        path: "/dashboard/player-profile",
         element: <PlayerProfile />,
       },
       {
-        path: "/video",
+        path: "/dashboard/video",
         element: <VideoAnalysis />,
       },
       {
-        path: "/metrics",
+        path: "/dashboard/metrics",
         element: <PlayerMetrics />,
       },
       {
-        path: "/tactics",
+        path: "/dashboard/tactics",
         element: <TacticalBoard />,
       },
       {
-        path: "/team-overview",
+        path: "/dashboard/team-overview",
         element: <TeamOverview />,
       },
       {
-        path: "/performance-analytics",
+        path: "/dashboard/performance-analytics",
         element: <PerformanceAnalytics />,
       },
       {
-        path: "/match-strategy",
+        path: "/dashboard/match-strategy",
         element: <MatchStrategy />,
       },
       {
-        path: "/ai-coach",
+        path: "/dashboard/ai-coach",
         element: <AICoach />,
       },
       {
-        path: "/game-sim",
+        path: "/dashboard/game-sim",
         element: <GameSimulation />,
       },
       {
-        path: "/clips",
+        path: "/dashboard/clips",
         element: <PlayerClips />,
       },
       {
-        path: "/calendar",
+        path: "/dashboard/calendar",
         element: <CalendarPage />,
-      }
+      },
     ]
   }
 ]);
